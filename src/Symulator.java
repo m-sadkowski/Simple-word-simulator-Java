@@ -2,11 +2,13 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Symulator extends JFrame {
     private Swiat swiat;
     private int m, n;
-    private String nazwa;
     private int przycisk = 1;
 
     private final Image wilkImage = new ImageIcon("Assets/wilk.jpg").getImage();
@@ -20,16 +22,6 @@ public class Symulator extends JFrame {
     private final Image mleczImage = new ImageIcon("Assets/mlecz.jpg").getImage();
     private final Image trawaImage = new ImageIcon("Assets/trawa.jpg").getImage();
     private final Image  jagodyImage = new ImageIcon("Assets/jagody.jpg").getImage();
-
-    JButton akceptujButton = new JButton("Akceptuj");
-    JButton zamknijButton = new JButton("Wyjdź");
-    JButton zapiszButton = new JButton("Zapisz");
-    JButton wczytajButton = new JButton("Wczytaj");
-    JButton wczytywanieButton = new JButton("Zaakceptuj");
-    JLabel labelM = new JLabel("Wysokość:");
-    JLabel labelN = new JLabel("Szerokość:");
-    JLabel labelNazwa = new JLabel("Podaj nazwę pliku do zapisu:");
-    JLabel labelWczytaj = new JLabel("Podaj nazwę pliku do wczytania:");
 
     /*private void stage1() { // powitanie, czyli podaj m n a na dole przyciski wczytaj i wyjdź
         akceptujButton.setVisible(true);
@@ -229,6 +221,8 @@ public class Symulator extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JButton akceptujButton = new JButton("Akceptuj");
+        JButton wczytajButton = new JButton("Wczytaj");
+        JButton zapiszButton = new JButton("Zapisz Grę");
         JButton zamknijButton = new JButton("Wyjdź");
 
         JLabel labelM = new JLabel("Wysokość:");
@@ -248,6 +242,8 @@ public class Symulator extends JFrame {
         inputPanel.add(akceptujButton);
 
         JPanel buttonPanel = new JPanel();
+        buttonPanel.add(wczytajButton);
+        buttonPanel.add(zapiszButton);
         buttonPanel.add(zamknijButton);
 
         setLayout(new BorderLayout());
@@ -272,6 +268,44 @@ public class Symulator extends JFrame {
             }
         });
 
+        wczytajButton.addActionListener(e -> {
+            String nazwaPliku = JOptionPane.showInputDialog(Symulator.this, "Podaj nazwę pliku do wczytania:");
+            if (nazwaPliku != null) {
+                try {
+                    File file = new File(nazwaPliku + ".txt");
+                    Scanner scanner = new Scanner(file);
+                    int m = scanner.nextInt();
+                    int n = scanner.nextInt();
+                    swiat = new Swiat(m, n);
+                    scanner.close();
+                } catch (FileNotFoundException f) {
+                    System.err.println("Nie znaleziono pliku: " + f.getMessage());
+                }
+                swiat.wczytajSwiat(nazwaPliku);
+                if (swiat == null) {
+                    JOptionPane.showMessageDialog(Symulator.this, "Nie udało się wczytać pliku.");
+                    return;
+                }
+                inputPanel.setVisible(false);
+                akceptujButton.setVisible(false);
+                requestFocus();
+                repaint();
+            }
+        });
+
+        zapiszButton.addActionListener(e -> {
+            if (swiat != null) {
+                String nazwaPliku = JOptionPane.showInputDialog(Symulator.this, "Podaj nazwę pliku do zapisu:");
+                if (nazwaPliku != null) {
+                    swiat.zapiszSwiat(nazwaPliku);
+                    JOptionPane.showMessageDialog(Symulator.this, "Gra została zapisana pomyślnie.");
+                    requestFocus();
+                }
+            } else {
+                JOptionPane.showMessageDialog(Symulator.this, "Nie ma żadnego świata do zapisania.");
+            }
+        });
+
         zamknijButton.addActionListener(e -> System.exit(0));
 
         addKeyListener(new KeyAdapter() {
@@ -288,6 +322,7 @@ public class Symulator extends JFrame {
         });
         setFocusable(true);
     }
+
 
     @Override
     public void paint(Graphics g) {

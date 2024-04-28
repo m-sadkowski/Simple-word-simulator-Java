@@ -1,9 +1,7 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Vector;
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 import static java.lang.Math.max;
 
@@ -193,50 +191,85 @@ public class Swiat {
     }
 
     public void wczytajSwiat(String nazwa) {
-        try (BufferedReader br = new BufferedReader(new FileReader(nazwa + ".txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] parts = line.split(" ");
-                int ilosc = Integer.parseInt(parts[0]);
-                for (int i = 0; i < ilosc; i++) {
-                    String[] organismData = br.readLine().split(" ");
-                    char symbol = organismData[0].charAt(0);
-                    int x = Integer.parseInt(organismData[1]);
-                    int y = Integer.parseInt(organismData[2]);
-                    int wiek = Integer.parseInt(organismData[3]);
-                    int sila = Integer.parseInt(organismData[4]);
-                    int inicjatywa = Integer.parseInt(organismData[5]);
-                    int cooldown = Integer.parseInt(organismData[6]);
+        try {
+            File file = new File(nazwa + ".txt");
+            Scanner scanner = new Scanner(file);
+            int m = scanner.nextInt();
+            int n = scanner.nextInt();
+            int iloscOrganizmow = scanner.nextInt();
+            for(int i = 0; i < iloscOrganizmow; i++) {
+                String symbolLine = scanner.next();
+                char symbol = symbolLine.charAt(0);
 
-                    switch (symbol) {
-                        case 'A':
-                            dodajOrganizm(new Antylopa(x, y, this, wiek, sila, inicjatywa, cooldown));
-                            break;
-                        case 'b':
-                            dodajOrganizm(new BarszczSosnowskiego(x, y, this, wiek, sila, inicjatywa, cooldown));
-                            break;
-                        // pozostałe przypadki...
-                        default:
-                            break;
-                    }
-                }
+                int x = scanner.nextInt();
+                int y = scanner.nextInt();
+                int wiek = scanner.nextInt();
+                int sila = scanner.nextInt();
+                int inicjatywa = scanner.nextInt();
+                int cooldown = scanner.nextInt();
 
-                int czasMocy = Integer.parseInt(br.readLine());
-                int mocUzyta = Integer.parseInt(br.readLine());
-                for (Organizm organizm : organizmy) {
-                    if (organizm instanceof Czlowiek) {
-                        Czlowiek czlowiek = (Czlowiek) organizm;
-                        czlowiek.setCzasMocy(czasMocy);
-                        czlowiek.setMocUzyta(mocUzyta == 1);
+                switch (symbol)
+                {
+                    case 'A':
+                        dodajOrganizm(new Antylopa(x, y, this, wiek, sila, inicjatywa, cooldown));
                         break;
-                    }
+                    case 'b':
+                        dodajOrganizm(new BarszczSosnowskiego(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'C':
+                        dodajOrganizm(new Czlowiek(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'g':
+                        dodajOrganizm(new Guarana(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'L':
+                        dodajOrganizm(new Lis(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'm':
+                        dodajOrganizm(new Mlecz(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'O':
+                        dodajOrganizm(new Owca(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 't':
+                        dodajOrganizm(new Trawa(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'w':
+                        dodajOrganizm(new WilczeJagody(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'W':
+                        dodajOrganizm(new Wilk(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    case 'Z':
+                        dodajOrganizm(new Zolw(x, y, this, wiek, sila, inicjatywa, cooldown));
+                        break;
+                    default:
+                        break;
                 }
             }
-        } catch (IOException e) {
-            System.out.println("Wystąpił błąd podczas wczytywania pliku.");
-            e.printStackTrace();
+            int czasMocy = scanner.nextInt();
+            int mocUzyta = scanner.nextInt();
+
+            for (int i = 0; i < organizmy.size(); i++)
+            {
+                if (organizmy.get(i).getSymbol() == 'C')
+                {
+                    Czlowiek czlowiek = (Czlowiek) organizmy.get(i);
+                    czlowiek.setCzasMocy(czasMocy);
+                    if(mocUzyta == 1) {
+                        czlowiek.setMocUzyta(true);
+                    } else {
+                        czlowiek.setMocUzyta(false);
+                    }
+                    break;
+                }
+            }
+            scanner.close();
+        } catch (FileNotFoundException f) {
+            System.err.println("Nie znaleziono pliku: " + f.getMessage());
         }
     }
+
 
     public void kasujSwiat() {
         organizmy.clear();
