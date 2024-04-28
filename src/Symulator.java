@@ -112,11 +112,13 @@ public class Symulator extends JFrame implements MouseListener {
                     int m = scanner.nextInt();
                     int n = scanner.nextInt();
                     swiat = new Swiat(m, n);
+                    swiat.wczytajSwiat(nazwaPliku);
+                    int size = max(m, n) + max(m, n) / 2 + 1;
+                    setSize((size *  cellSize), (size * cellSize));
                     scanner.close();
                 } catch (FileNotFoundException f) {
                     System.err.println("Nie znaleziono pliku: " + f.getMessage());
                 }
-                swiat.wczytajSwiat(nazwaPliku);
                 if (swiat == null) {
                     JOptionPane.showMessageDialog(Symulator.this, "Nie udało się wczytać pliku.");
                     return;
@@ -214,7 +216,10 @@ public class Symulator extends JFrame implements MouseListener {
                 int clickedColumn = (e.getX() - x) / cellSize;
                 int clickedRow = (e.getY() - y) / cellSize;
 
-                if (clickedColumn >= m || clickedRow >= n || clickedColumn < 0 || clickedRow < 0 ) {
+                System.out.println(clickedColumn + " " + clickedRow);
+                System.out.println(m + " " + n);
+
+                if (clickedColumn >= swiat.getSzerokosc() || clickedRow >= swiat.getWysokosc() || clickedColumn < 0 || clickedRow < 0 ) {
                     return;
                 }
 
