@@ -33,7 +33,6 @@ public class Antylopa extends Zwierze {
         }
 
         if (newX < 0 || newX > swiat.getWysokosc() - 1 || newY < 0 || newY > swiat.getSzerokosc() - 1) {
-            this.akcja();
             return;
         }
 

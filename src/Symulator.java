@@ -6,11 +6,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class Symulator extends JFrame {
+public class Symulator extends JFrame implements MouseListener {
     private Swiat swiat;
     private int m, n;
+
+    private int pozycjaNowegoX, pozycjaNowegoY;
     private int przycisk = 1;
     private int cellSize = 20;
+    private JPopupMenu popupMenu;
     private final Image wilkImage = new ImageIcon("Assets/wilk.jpg").getImage();
     private final Image owcaImage = new ImageIcon("Assets/owca.jpg").getImage();
     private final Image lisImage = new ImageIcon("Assets/lis.jpg").getImage();
@@ -32,6 +35,20 @@ public class Symulator extends JFrame {
         JButton wczytajButton = new JButton("Wczytaj");
         JButton zapiszButton = new JButton("Zapisz Grę");
         JButton zamknijButton = new JButton("Wyjdź");
+
+        popupMenu = new JPopupMenu();
+
+        // Dodanie elementów wyboru do menu kontekstowego
+        dodajElementWyboru("Wilk");
+        dodajElementWyboru("Owca");
+        dodajElementWyboru("Lis");
+        dodajElementWyboru("Zolw");
+        dodajElementWyboru("Antylopa");
+        dodajElementWyboru("Barszcz sosnowskiego");
+        dodajElementWyboru("Guarana");
+        dodajElementWyboru("Mlecz");
+        dodajElementWyboru("Trawa");
+        dodajElementWyboru("Wilcze jagody");
 
         JLabel labelM = new JLabel("Wysokość:");
         JLabel labelN = new JLabel("Szerokość:");
@@ -61,6 +78,8 @@ public class Symulator extends JFrame {
         add(inputPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
         add(outputPanel, BorderLayout.NORTH);
+
+        addMouseListener(this);
 
         akceptujButton.addActionListener(e -> {
             try {
@@ -165,6 +184,59 @@ public class Symulator extends JFrame {
         setFocusable(true);
     }
 
+    private void dodajElementWyboru(String nazwa) {
+        JMenuItem menuItem = new JMenuItem(nazwa);
+        menuItem.addActionListener(e -> {
+            Point clickPoint = popupMenu.getInvoker().getMousePosition();
+            if (clickPoint != null) {
+                swiat.dodajOrganizm(nazwa, pozycjaNowegoX, pozycjaNowegoY);
+                swiat.dodajKomunikat("Dodano " + nazwa + " na pozycji (" + pozycjaNowegoX + ", " + pozycjaNowegoY + ")");
+                repaint();
+            }
+        });
+        popupMenu.add(menuItem);
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getButton() == MouseEvent.BUTTON3) { // Sprawdź, czy kliknięto prawym przyciskiem myszy
+            if(swiat != null) {
+                char[][] plansza = swiat.getPlansza();
+                int panelWidth = plansza[0].length * cellSize;
+                int panelHeight = plansza.length * cellSize;
+
+                int x = (getWidth() - panelWidth) / 2;
+                int y = (getHeight() - panelHeight) / 2;
+
+                int clickedColumn = (e.getX() - x) / cellSize;
+                int clickedRow = (e.getY() - y) / cellSize;
+
+                if (clickedColumn >= m || clickedRow >= n || clickedColumn < 0 || clickedRow < 0 ) {
+                    return;
+                }
+
+                if(swiat.getOrganizm(clickedRow, clickedColumn) == null) {
+                    pozycjaNowegoX = clickedRow;
+                    pozycjaNowegoY = clickedColumn;
+                    popupMenu.show(e.getComponent(), e.getX(), e.getY());
+                }
+            }
+        } else if (e.getButton() == MouseEvent.BUTTON1) {
+            repaint();
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {}
+
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 
     @Override
     public void paint(Graphics g) {

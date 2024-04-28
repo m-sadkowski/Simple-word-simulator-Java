@@ -313,4 +313,42 @@ public class Swiat {
     }
 
 
+    public void dodajOrganizm(String nazwa, int clickedRow, int clickedColumn) {
+        switch (nazwa)
+        {
+            case "Antylopa":
+                dodajOrganizm(new Antylopa(clickedRow, clickedColumn, this));
+                break;
+            case "Barszcz sosnowskiego":
+                dodajOrganizm(new BarszczSosnowskiego(clickedRow, clickedColumn, this));
+                break;
+            case "Guarana":
+                dodajOrganizm(new Guarana(clickedRow, clickedColumn, this));
+                break;
+            case "Lis":
+                dodajOrganizm(new Lis(clickedRow, clickedColumn, this));
+                break;
+            case "Mlecz":
+                dodajOrganizm(new Mlecz(clickedRow, clickedColumn, this));
+                break;
+            case "Owca":
+                dodajOrganizm(new Owca(clickedRow, clickedColumn, this));
+                break;
+            case "Trawa":
+                dodajOrganizm(new Trawa(clickedRow, clickedColumn, this));
+                break;
+            case "Wilcze jagody":
+                dodajOrganizm(new WilczeJagody(clickedRow, clickedColumn, this));
+                break;
+            case "Wilk":
+                dodajOrganizm(new Wilk(clickedRow, clickedColumn, this));
+                break;
+            case "Zolw":
+                dodajOrganizm(new Zolw(clickedRow, clickedColumn, this));
+                break;
+            default:
+                break;
+        }
+        System.out.println(nazwa + clickedRow + clickedColumn);
+    }
 }
