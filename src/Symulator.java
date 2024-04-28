@@ -31,7 +31,7 @@ public class Symulator extends JFrame {
     JLabel labelNazwa = new JLabel("Podaj nazwę pliku do zapisu:");
     JLabel labelWczytaj = new JLabel("Podaj nazwę pliku do wczytania:");
 
-    private void stage1() { // powitanie, czyli podaj m n a na dole przyciski wczytaj i wyjdź
+    /*private void stage1() { // powitanie, czyli podaj m n a na dole przyciski wczytaj i wyjdź
         akceptujButton.setVisible(true);
         wczytajButton.setVisible(true);
         wczytywanieButton.setVisible(false);
@@ -72,8 +72,7 @@ public class Symulator extends JFrame {
                 swiat.generujSwiat();
                 inputPanel.setVisible(false);
                 buttonPanel.setVisible(false);
-                repaint();
-                stage2();
+                this.stage2();
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(Symulator.this, "Wprowadź poprawne liczby całkowite dla m i n.");
             }
@@ -87,6 +86,7 @@ public class Symulator extends JFrame {
     }
 
     private void stage2() { // plansza, na dole przycisk zapisz wczytaj i wyjdź
+        repaint();
         akceptujButton.setVisible(false);
         zapiszButton.setVisible(true);
         wczytajButton.setVisible(true);
@@ -100,8 +100,6 @@ public class Symulator extends JFrame {
         setLayout(new BorderLayout());
         add(buttonPanel, BorderLayout.SOUTH);
 
-        repaint();
-
         addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
@@ -110,7 +108,6 @@ public class Symulator extends JFrame {
                         e.getKeyCode() == KeyEvent.VK_CONTROL) {
                     przycisk = e.getKeyCode();
                     swiat.wykonajTure(przycisk);
-                    repaint();
                     stage2();
                 }
             }
@@ -224,8 +221,73 @@ public class Symulator extends JFrame {
         zamknijButton.addActionListener(e -> System.exit(0));
 
         stage1();
-    }
+    }*/
 
+    public Symulator() {
+        setTitle("Symulator świata");
+        setSize(600, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        JButton akceptujButton = new JButton("Akceptuj");
+        JButton zamknijButton = new JButton("Wyjdź");
+
+        JLabel labelM = new JLabel("Wysokość:");
+        JLabel labelN = new JLabel("Szerokość:");
+
+        JTextField textFieldM = new JTextField(5);
+        JTextField textFieldN = new JTextField(5);
+
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new GridLayout(6, 1));
+        inputPanel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Dodanie marginesów 10 pikseli
+        inputPanel.add(labelM);
+        inputPanel.add(textFieldM);
+        inputPanel.add(labelN);
+        inputPanel.add(textFieldN);
+        inputPanel.add(new JLabel(""));
+        inputPanel.add(akceptujButton);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(zamknijButton);
+
+        setLayout(new BorderLayout());
+        add(inputPanel, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        akceptujButton.addActionListener(e -> {
+            try {
+                m = Integer.parseInt(textFieldM.getText());
+                n = Integer.parseInt(textFieldN.getText());
+                if (m <= 0 || n <= 0) {
+                    JOptionPane.showMessageDialog(Symulator.this, "Wprowadź dodatnie liczby całkowite dla m i n.");
+                    return;
+                }
+                swiat = new Swiat(m, n);
+                swiat.generujSwiat();
+                inputPanel.setVisible(false);
+                akceptujButton.setVisible(false);
+                repaint();
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(Symulator.this, "Wprowadź poprawne liczby całkowite dla m i n.");
+            }
+        });
+
+        zamknijButton.addActionListener(e -> System.exit(0));
+
+        addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN ||
+                        e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT ||
+                        e.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    przycisk = e.getKeyCode();
+                    swiat.wykonajTure(przycisk);
+                    repaint();
+                }
+            }
+        });
+        setFocusable(true);
+    }
 
     @Override
     public void paint(Graphics g) {
