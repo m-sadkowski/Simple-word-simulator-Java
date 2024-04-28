@@ -10,7 +10,7 @@ public class Symulator extends JFrame {
     private Swiat swiat;
     private int m, n;
     private int przycisk = 1;
-
+    private int cellSize = 20;
     private final Image wilkImage = new ImageIcon("Assets/wilk.jpg").getImage();
     private final Image owcaImage = new ImageIcon("Assets/owca.jpg").getImage();
     private final Image lisImage = new ImageIcon("Assets/lis.jpg").getImage();
@@ -23,201 +23,9 @@ public class Symulator extends JFrame {
     private final Image trawaImage = new ImageIcon("Assets/trawa.jpg").getImage();
     private final Image  jagodyImage = new ImageIcon("Assets/jagody.jpg").getImage();
 
-    /*private void stage1() { // powitanie, czyli podaj m n a na dole przyciski wczytaj i wyjdź
-        akceptujButton.setVisible(true);
-        wczytajButton.setVisible(true);
-        wczytywanieButton.setVisible(false);
-
-        JTextField textFieldM = new JTextField(5);
-        JTextField textFieldN = new JTextField(5);
-
-        // STWORZENIE PANELU Z INPUTEM
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(6, 1));
-        inputPanel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Dodanie marginesów 10 pikseli
-        inputPanel.add(labelM);
-        inputPanel.add(textFieldM);
-        inputPanel.add(labelN);
-        inputPanel.add(textFieldN);
-        inputPanel.add(new JLabel(""));
-        inputPanel.add(akceptujButton);
-
-        // STWORZENIE PANELU Z PRZYCISKAMI
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(wczytajButton);
-        buttonPanel.add(zamknijButton);
-
-        // DODANIE PANELI
-        setLayout(new BorderLayout());
-        add(buttonPanel, BorderLayout.SOUTH);
-        add(inputPanel, BorderLayout.CENTER);
-
-        akceptujButton.addActionListener(e -> {
-            try {
-                m = Integer.parseInt(textFieldM.getText());
-                n = Integer.parseInt(textFieldN.getText());
-                if (m <= 0 || n <= 0) {
-                    JOptionPane.showMessageDialog(Symulator.this, "Wprowadź dodatnie liczby całkowite dla m i n.");
-                    return;
-                }
-                swiat = new Swiat(m, n);
-                swiat.generujSwiat();
-                inputPanel.setVisible(false);
-                buttonPanel.setVisible(false);
-                this.stage2();
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(Symulator.this, "Wprowadź poprawne liczby całkowite dla m i n.");
-            }
-        });
-
-        wczytajButton.addActionListener(e -> {
-            inputPanel.setVisible(false);
-            buttonPanel.setVisible(false);
-            this.stage4();
-        });
-    }
-
-    private void stage2() { // plansza, na dole przycisk zapisz wczytaj i wyjdź
-        repaint();
-        akceptujButton.setVisible(false);
-        zapiszButton.setVisible(true);
-        wczytajButton.setVisible(true);
-        wczytywanieButton.setVisible(false);
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(wczytajButton);
-        buttonPanel.add(zapiszButton);
-        buttonPanel.add(zamknijButton);
-
-        setLayout(new BorderLayout());
-        add(buttonPanel, BorderLayout.SOUTH);
-
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN ||
-                        e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT ||
-                        e.getKeyCode() == KeyEvent.VK_CONTROL) {
-                    przycisk = e.getKeyCode();
-                    swiat.wykonajTure(przycisk);
-                    stage2();
-                }
-            }
-        });
-        setFocusable(true);
-
-        zapiszButton.addActionListener(e -> {
-            buttonPanel.setVisible(false);
-            this.stage3();
-        });
-
-        wczytajButton.addActionListener(e -> {
-            buttonPanel.setVisible(false);
-            this.stage4();
-        });
-    }
-
-    private void stage3() {
-        akceptujButton.setVisible(true);
-        wczytajButton.setVisible(false);
-        zapiszButton.setVisible(false);
-        wczytywanieButton.setVisible(false);
-
-        JTextField textFieldZapisz = new JTextField(5);
-
-        // STWORZENIE PANELU Z INPUTEM
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(4, 1));
-        inputPanel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Dodanie marginesów 10 pikseli
-        inputPanel.add(labelNazwa);
-        inputPanel.add(textFieldZapisz);
-        inputPanel.add(new JLabel(""));
-        inputPanel.add(akceptujButton);
-
-        // STWORZENIE PANELU Z PRZYCISKAMI
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(zamknijButton);
-
-        // DODANIE PANELI
-        setLayout(new BorderLayout());
-        add(buttonPanel, BorderLayout.SOUTH);
-        add(inputPanel, BorderLayout.CENTER);
-
-        akceptujButton.addActionListener(e -> {
-            inputPanel.setVisible(false);
-            buttonPanel.setVisible(false);
-            nazwa = (textFieldZapisz.getText());
-            swiat.zapiszSwiat(nazwa);
-            this.stage2();
-        });
-
-        wczytajButton.addActionListener(e -> {
-            inputPanel.setVisible(false);
-            buttonPanel.setVisible(false);
-            this.stage4();
-        });
-    }
-
-    private void stage4() {
-        wczytywanieButton.setVisible(true);
-        akceptujButton.setVisible(true);
-        wczytajButton.setVisible(false);
-        zapiszButton.setVisible(false);
-
-        JTextField textFieldWczytaj = new JTextField(5);
-
-        // STWORZENIE PANELU Z INPUTEM
-        JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridLayout(4, 1));
-        inputPanel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Dodanie marginesów 10 pikseli
-        inputPanel.add(labelWczytaj);
-        inputPanel.add(textFieldWczytaj);
-        inputPanel.add(new JLabel(""));
-        inputPanel.add(wczytywanieButton);
-
-        // STWORZENIE PANELU Z PRZYCISKAMI
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.add(zamknijButton);
-
-        // DODANIE PANELI
-        setLayout(new BorderLayout());
-        add(buttonPanel, BorderLayout.SOUTH);
-        add(inputPanel, BorderLayout.CENTER);
-
-        wczytywanieButton.addActionListener(e -> {
-            inputPanel.setVisible(false);
-            buttonPanel.setVisible(false);
-            nazwa = (textFieldWczytaj.getText());
-            if(swiat != null) {
-                swiat.kasujSwiat();
-            }
-            else {
-                swiat = new Swiat(m, n);
-            }
-            swiat.wczytajSwiat(nazwa);
-            this.stage2();
-        });
-    }
-
-
     public Symulator() {
         setTitle("Symulator świata");
         setSize(500, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        zamknijButton.setVisible(true);
-        akceptujButton.setVisible(false);
-        zapiszButton.setVisible(false);
-        wczytajButton.setVisible(false);
-        wczytywanieButton.setVisible(false);
-
-        zamknijButton.addActionListener(e -> System.exit(0));
-
-        stage1();
-    }*/
-
-    public Symulator() {
-        setTitle("Symulator świata");
-        setSize(600, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JButton akceptujButton = new JButton("Akceptuj");
@@ -246,18 +54,23 @@ public class Symulator extends JFrame {
         buttonPanel.add(zapiszButton);
         buttonPanel.add(zamknijButton);
 
+        JPanel outputPanel = new JPanel();
+        outputPanel.setVisible(true);
+
         setLayout(new BorderLayout());
         add(inputPanel, BorderLayout.CENTER);
         add(buttonPanel, BorderLayout.SOUTH);
+        add(outputPanel, BorderLayout.NORTH);
 
         akceptujButton.addActionListener(e -> {
             try {
                 m = Integer.parseInt(textFieldM.getText());
                 n = Integer.parseInt(textFieldN.getText());
-                if (m <= 0 || n <= 0) {
-                    JOptionPane.showMessageDialog(Symulator.this, "Wprowadź dodatnie liczby całkowite dla m i n.");
+                if (m < 5 || n < 5) {
+                    JOptionPane.showMessageDialog(Symulator.this, "Wprowadź liczby całkowite większe od 5. Inaczej nie zmieszczą się wszystkie organizmy.");
                     return;
                 }
+                setSize(((m + cellSize) * cellSize), ((n + cellSize) * cellSize));
                 swiat = new Swiat(m, n);
                 swiat.generujSwiat();
                 inputPanel.setVisible(false);
@@ -316,6 +129,35 @@ public class Symulator extends JFrame {
                         e.getKeyCode() == KeyEvent.VK_CONTROL) {
                     przycisk = e.getKeyCode();
                     swiat.wykonajTure(przycisk);
+
+                    if(swiat != null) {
+                        int ilosc = swiat.komunikaty.size();
+                        outputPanel.removeAll(); // Usuń wszystkie komponenty z JPanel
+
+                        outputPanel.setLayout(new GridLayout(1, 1)); // Ustawiamy pojedynczy komponent, który będzie obsługiwał przewijanie
+                        outputPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+
+                        JTextArea textArea = new JTextArea();
+                        textArea.setEditable(false); // Uniemożliwiamy edycję tekstu
+                        textArea.setLineWrap(true); // Włączamy zawijanie wierszy
+                        textArea.setWrapStyleWord(true); // Zawijaj całe słowa
+                        textArea.setRows(3); // Ustawiamy maksymalną liczbę widocznych wierszy na 3
+                        textArea.setFocusable(false); // Uniemożliwiamy kliknięcie na JTextArea
+
+                        JScrollPane scrollPane = new JScrollPane(textArea); // Dodajemy JTextArea do JScrollPane, aby obsługiwać przewijanie
+                        outputPanel.add(scrollPane);
+
+                        for(String napis : swiat.komunikaty) {
+                            textArea.append(napis + "\n"); // Dodajemy nowy komunikat do JTextArea
+                            System.out.println(napis);
+                        }
+
+                        outputPanel.revalidate(); // Przelicz układ komponentów
+                        outputPanel.repaint(); // Odśwież panel
+                        swiat.komunikaty.clear();
+                    }
+
+
                     repaint();
                 }
             }
@@ -328,7 +170,6 @@ public class Symulator extends JFrame {
     public void paint(Graphics g) {
         super.paint(g);
         if (swiat != null) {
-            int cellSize = 20;
             char[][] plansza = swiat.getPlansza();
             int panelWidth = plansza[0].length * cellSize;
             int panelHeight = plansza.length * cellSize;

@@ -1,3 +1,6 @@
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 import java.io.*;
 import java.util.Random;
 import java.util.Scanner;
@@ -22,8 +25,8 @@ public class Swiat {
     private int x;
     private int y;
     private char[][] plansza;
-    Vector<String> komunikaty = new Vector<>();
-    Vector<Organizm> organizmy = new Vector<>();
+    public Vector<String> komunikaty = new Vector<>();
+    public Vector<Organizm> organizmy = new Vector<>();
 
     public Swiat(int m, int n) {
         this.m = m;
@@ -270,11 +273,6 @@ public class Swiat {
         }
     }
 
-
-    public void kasujSwiat() {
-        organizmy.clear();
-    }
-
     public int getWysokosc() {
         return m;
     }
@@ -312,10 +310,6 @@ public class Swiat {
                 organizmy.get(i).akcja();
             }
         }
-        for(String napis : komunikaty) {
-            System.out.println(napis);
-        }
-        komunikaty.clear();
     }
 
 
