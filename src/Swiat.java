@@ -104,17 +104,13 @@ public class Swiat {
     public Para generujOrganizm() {
         Random rand = new Random();
         while (true) {
-            int X = rand.nextInt(n - 1);
-            int Y = rand.nextInt(m - 1);
+            int X = rand.nextInt(m - 1);
+            int Y = rand.nextInt(n - 1);
             if (getOrganizm(X, Y) == null)
             {
                 return new Para(X, Y);
             }
         }
-    }
-
-    public void rysujSwiat() {
-        // rysowanie swiata
     }
 
     public void dodajOrganizm(Organizm organizm) {

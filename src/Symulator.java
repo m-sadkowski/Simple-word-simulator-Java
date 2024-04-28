@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+import static java.lang.Math.max;
+
 public class Symulator extends JFrame implements MouseListener {
     private Swiat swiat;
     private int m, n;
@@ -89,7 +91,8 @@ public class Symulator extends JFrame implements MouseListener {
                     JOptionPane.showMessageDialog(Symulator.this, "Wprowadź liczby całkowite większe od 5. Inaczej nie zmieszczą się wszystkie organizmy.");
                     return;
                 }
-                setSize(((m + cellSize) * cellSize), ((n + cellSize) * cellSize));
+                int size = max(m, n) + max(m, n) / 2 + 1;
+                setSize((size *  cellSize), (size * cellSize));
                 swiat = new Swiat(m, n);
                 swiat.generujSwiat();
                 inputPanel.setVisible(false);
@@ -160,7 +163,7 @@ public class Symulator extends JFrame implements MouseListener {
                         textArea.setEditable(false); // Uniemożliwiamy edycję tekstu
                         textArea.setLineWrap(true); // Włączamy zawijanie wierszy
                         textArea.setWrapStyleWord(true); // Zawijaj całe słowa
-                        textArea.setRows(3); // Ustawiamy maksymalną liczbę widocznych wierszy na 3
+                        textArea.setRows(5); // Ustawiamy maksymalną liczbę widocznych wierszy na 3
                         textArea.setFocusable(false); // Uniemożliwiamy kliknięcie na JTextArea
 
                         JScrollPane scrollPane = new JScrollPane(textArea); // Dodajemy JTextArea do JScrollPane, aby obsługiwać przewijanie
