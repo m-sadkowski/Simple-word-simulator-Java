@@ -51,6 +51,7 @@ public class Symulator extends JFrame implements MouseListener {
         dodajElementWyboru("Mlecz");
         dodajElementWyboru("Trawa");
         dodajElementWyboru("Wilcze jagody");
+        dodajElementWyboru("Czlowiek");
 
         JLabel labelM = new JLabel("Wysokość:");
         JLabel labelN = new JLabel("Szerokość:");
@@ -156,28 +157,28 @@ public class Symulator extends JFrame implements MouseListener {
 
                     if(swiat != null) {
                         int ilosc = swiat.komunikaty.size();
-                        outputPanel.removeAll(); // Usuń wszystkie komponenty z JPanel
+                        outputPanel.removeAll();
 
-                        outputPanel.setLayout(new GridLayout(1, 1)); // Ustawiamy pojedynczy komponent, który będzie obsługiwał przewijanie
+                        outputPanel.setLayout(new GridLayout(1, 1));
                         outputPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
                         JTextArea textArea = new JTextArea();
-                        textArea.setEditable(false); // Uniemożliwiamy edycję tekstu
-                        textArea.setLineWrap(true); // Włączamy zawijanie wierszy
-                        textArea.setWrapStyleWord(true); // Zawijaj całe słowa
-                        textArea.setRows(5); // Ustawiamy maksymalną liczbę widocznych wierszy na 3
-                        textArea.setFocusable(false); // Uniemożliwiamy kliknięcie na JTextArea
+                        textArea.setEditable(false);
+                        textArea.setLineWrap(true);
+                        textArea.setWrapStyleWord(true);
+                        textArea.setRows(5);
+                        textArea.setFocusable(false);
 
-                        JScrollPane scrollPane = new JScrollPane(textArea); // Dodajemy JTextArea do JScrollPane, aby obsługiwać przewijanie
+                        JScrollPane scrollPane = new JScrollPane(textArea);
                         outputPanel.add(scrollPane);
 
                         for(String napis : swiat.komunikaty) {
-                            textArea.append(napis + "\n"); // Dodajemy nowy komunikat do JTextArea
+                            textArea.append(napis + "\n");
                             System.out.println(napis);
                         }
 
-                        outputPanel.revalidate(); // Przelicz układ komponentów
-                        outputPanel.repaint(); // Odśwież panel
+                        outputPanel.revalidate();
+                        outputPanel.repaint();
                         swiat.komunikaty.clear();
                     }
 
@@ -194,8 +195,13 @@ public class Symulator extends JFrame implements MouseListener {
         menuItem.addActionListener(e -> {
             Point clickPoint = popupMenu.getInvoker().getMousePosition();
             if (clickPoint != null) {
-                swiat.dodajOrganizm(nazwa, pozycjaNowegoX, pozycjaNowegoY);
-                swiat.dodajKomunikat("Dodano " + nazwa + " na pozycji (" + pozycjaNowegoX + ", " + pozycjaNowegoY + ")");
+                if(swiat.czyCzlowiekZyje() && nazwa == "Czlowiek") {
+                    swiat.dodajKomunikat("Juz jest jeden czlowiek.");
+                }
+                else {
+                    swiat.dodajOrganizm(nazwa, pozycjaNowegoX, pozycjaNowegoY);
+                    swiat.dodajKomunikat("Dodano " + nazwa + " na pozycji (" + pozycjaNowegoX + ", " + pozycjaNowegoY + ")");
+                }
                 repaint();
             }
         });
@@ -248,6 +254,7 @@ public class Symulator extends JFrame implements MouseListener {
 
     @Override
     public void paint(Graphics g) {
+
         super.paint(g);
         if (swiat != null) {
             char[][] plansza = swiat.getPlansza();

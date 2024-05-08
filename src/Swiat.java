@@ -308,6 +308,15 @@ public class Swiat {
         }
     }
 
+    public boolean czyCzlowiekZyje() {
+        for (int i = 0; i < organizmy.size(); i++) {
+            if (organizmy.get(i).getSymbol() == 'C') {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void dodajOrganizm(String nazwa, int clickedRow, int clickedColumn) {
         switch (nazwa)
@@ -341,6 +350,9 @@ public class Swiat {
                 break;
             case "Zolw":
                 dodajOrganizm(new Zolw(clickedRow, clickedColumn, this));
+                break;
+            case "Czlowiek":
+                dodajOrganizm(new Czlowiek(clickedRow, clickedColumn, this));
                 break;
             default:
                 break;
