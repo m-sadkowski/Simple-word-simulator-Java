@@ -8,6 +8,18 @@ import java.util.Scanner;
 
 import static java.lang.Math.max;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+import static java.lang.Math.max;
+
 public class Symulator extends JFrame implements MouseListener {
     private Swiat swiat;
     private int m, n;
@@ -16,28 +28,35 @@ public class Symulator extends JFrame implements MouseListener {
     private int przycisk = 1;
     private int cellSize = 20;
     private JPopupMenu popupMenu;
-    private final Image wilkImage = new ImageIcon("Assets/wilk.jpg").getImage();
-    private final Image owcaImage = new ImageIcon("Assets/owca.jpg").getImage();
-    private final Image lisImage = new ImageIcon("Assets/lis.jpg").getImage();
-    private final Image zolwImage = new ImageIcon("Assets/zolw.jpg").getImage();
-    private final Image antylopaImage = new ImageIcon("Assets/antylopa.jpg").getImage();
-    private final Image czlowiekImage = new ImageIcon("Assets/czlowiek.jpg").getImage();
-    private final Image barszczImage = new ImageIcon("Assets/barszcz.jpg").getImage();
-    private final Image guaranaImage = new ImageIcon("Assets/guarana.jpg").getImage();
-    private final Image mleczImage = new ImageIcon("Assets/mlecz.jpg").getImage();
-    private final Image trawaImage = new ImageIcon("Assets/trawa.jpg").getImage();
-    private final Image  jagodyImage = new ImageIcon("Assets/jagody.jpg").getImage();
+
+    private Map<String, Image> organizmImages = new HashMap<>(); // mapa do przechowywania obrazów organizmów
 
     public Symulator() {
+        // wczytanie obrazów organizmów
+        organizmImages.put("Wilk", new ImageIcon("Assets/wilk.jpg").getImage());
+        organizmImages.put("Owca", new ImageIcon("Assets/owca.jpg").getImage());
+        organizmImages.put("Lis", new ImageIcon("Assets/lis.jpg").getImage());
+        organizmImages.put("Zolw", new ImageIcon("Assets/zolw.jpg").getImage());
+        organizmImages.put("Antylopa", new ImageIcon("Assets/antylopa.jpg").getImage());
+        organizmImages.put("BarszczSosnowskiego", new ImageIcon("Assets/barszcz.jpg").getImage());
+        organizmImages.put("Guarana", new ImageIcon("Assets/guarana.jpg").getImage());
+        organizmImages.put("Mlecz", new ImageIcon("Assets/mlecz.jpg").getImage());
+        organizmImages.put("Trawa", new ImageIcon("Assets/trawa.jpg").getImage());
+        organizmImages.put("WilczeJagody", new ImageIcon("Assets/jagody.jpg").getImage());
+        organizmImages.put("Czlowiek", new ImageIcon("Assets/czlowiek.jpg").getImage());
+
+        // Ustawienia okna
         setTitle("Symulator świata");
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // Dodanie przycisków
         JButton akceptujButton = new JButton("Akceptuj");
         JButton wczytajButton = new JButton("Wczytaj");
         JButton zapiszButton = new JButton("Zapisz Grę");
         JButton zamknijButton = new JButton("Wyjdź");
 
+        // Utworzenie menu kontekstowego do dodawania organizmów
         popupMenu = new JPopupMenu();
 
         // Dodanie elementów wyboru do menu kontekstowego
@@ -53,12 +72,13 @@ public class Symulator extends JFrame implements MouseListener {
         dodajElementWyboru("Wilcze jagody");
         dodajElementWyboru("Czlowiek");
 
+        // Utworzenie etykiet i pól tekstowych
         JLabel labelM = new JLabel("Wysokość:");
         JLabel labelN = new JLabel("Szerokość:");
-
         JTextField textFieldM = new JTextField(5);
         JTextField textFieldN = new JTextField(5);
 
+        // Utworzenie paneli
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridLayout(6, 1));
         inputPanel.setBorder(new EmptyBorder(10, 10, 10, 10)); // Dodanie marginesów 10 pikseli
@@ -66,7 +86,7 @@ public class Symulator extends JFrame implements MouseListener {
         inputPanel.add(textFieldM);
         inputPanel.add(labelN);
         inputPanel.add(textFieldN);
-        inputPanel.add(new JLabel(""));
+        inputPanel.add(new JLabel("")); // Pusty label do dodania odstępu
         inputPanel.add(akceptujButton);
 
         JPanel buttonPanel = new JPanel();
@@ -163,8 +183,8 @@ public class Symulator extends JFrame implements MouseListener {
                         outputPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
                         JTextArea textArea = new JTextArea();
-                        textArea.setEditable(false);
-                        textArea.setLineWrap(true);
+                        textArea.setEditable(false); // Nie pozwól na edycję tekstu
+                        textArea.setLineWrap(true); // Zawijaj tekst w polu tekstowym
                         textArea.setWrapStyleWord(true);
                         textArea.setRows(5);
                         textArea.setFocusable(false);
@@ -188,6 +208,13 @@ public class Symulator extends JFrame implements MouseListener {
             }
         });
         setFocusable(true);
+    }
+
+    private void drawOrganismImage(Graphics g, Organizm organizm, int x, int y) {
+        Image image = organizmImages.get(organizm.getClass().getSimpleName());
+        if (image != null) {
+            g.drawImage(image, x, y, cellSize, cellSize, null);
+        }
     }
 
     private void dodajElementWyboru(String nazwa) {
@@ -222,9 +249,6 @@ public class Symulator extends JFrame implements MouseListener {
                 int clickedColumn = (e.getX() - x) / cellSize;
                 int clickedRow = (e.getY() - y) / cellSize;
 
-                System.out.println(clickedColumn + " " + clickedRow);
-                System.out.println(m + " " + n);
-
                 if (clickedColumn >= swiat.getSzerokosc() || clickedRow >= swiat.getWysokosc() || clickedColumn < 0 || clickedRow < 0 ) {
                     return;
                 }
@@ -254,7 +278,6 @@ public class Symulator extends JFrame implements MouseListener {
 
     @Override
     public void paint(Graphics g) {
-
         super.paint(g);
         if (swiat != null) {
             char[][] plansza = swiat.getPlansza();
@@ -273,45 +296,12 @@ public class Symulator extends JFrame implements MouseListener {
 
             for (int i = 0; i < plansza.length; i++) {
                 for (int j = 0; j < plansza[i].length; j++) {
-                    if (swiat.getOrganizm(i, j) instanceof Wilk) {
-                        g.drawImage(wilkImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Owca) {
-                        g.drawImage(owcaImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Lis) {
-                        g.drawImage(lisImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Zolw) {
-                        g.drawImage(zolwImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Antylopa) {
-                        g.drawImage(antylopaImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Czlowiek) {
-                        g.drawImage(czlowiekImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof BarszczSosnowskiego) {
-                        g.drawImage(barszczImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Guarana) {
-                        g.drawImage(guaranaImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Mlecz) {
-                        g.drawImage(mleczImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Trawa) {
-                        g.drawImage(trawaImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof WilczeJagody) {
-                        g.drawImage(jagodyImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
-                    }
-                    else if (swiat.getOrganizm(i, j) instanceof Czlowiek) {
-                        g.drawImage(czlowiekImage, x + j * cellSize, y + i * cellSize, cellSize, cellSize, null);
+                    Organizm organizm = swiat.getOrganizm(i, j);
+                    if (organizm != null) {
+                        drawOrganismImage(g, organizm, x + j * cellSize, y + i * cellSize);
                     }
                 }
             }
-
         }
     }
 

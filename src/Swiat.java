@@ -2,6 +2,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.*;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
@@ -42,61 +44,27 @@ public class Swiat {
     public void generujSwiat() {
         int maxOrganizmow = max(1, (m + n) / 11);
         Random rand = new Random();
-        int ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Owca(para.x, para.y, this));
+
+        Class[] organizmyClasses = new Class[] {
+                Owca.class, Wilk.class, Zolw.class, Lis.class, Antylopa.class,
+                Trawa.class, Mlecz.class, Guarana.class, WilczeJagody.class,
+                BarszczSosnowskiego.class
+        };
+
+        for (Class organizmClass : organizmyClasses) {
+            int ilosc = rand.nextInt(maxOrganizmow) + 1;
+            for (int j = 0; j < ilosc; j++) {
+                Para para = generujOrganizm();
+                try {
+                    Constructor constructor = organizmClass.getConstructor(int.class, int.class, Swiat.class);
+                    Organizm organizm = (Organizm) constructor.newInstance(para.x, para.y, this);
+                    this.dodajOrganizm(organizm);
+                } catch (NoSuchMethodException | IllegalAccessException | InstantiationException | InvocationTargetException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Wilk(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Zolw(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Lis(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Antylopa(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Trawa(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Mlecz(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new Guarana(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-            Para para = generujOrganizm();
-            this.dodajOrganizm(new WilczeJagody(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-	        Para para = generujOrganizm();
-	        this.dodajOrganizm(new BarszczSosnowskiego(para.x, para.y, this));
-        }
-        ilosc = rand.nextInt(maxOrganizmow) + 1;
-        for (int j = 0; j < ilosc; j++) {
-            Para para = generujOrganizm();
-            this.dodajOrganizm(new Owca(para.x, para.y, this));
-        }
+
         Para para = generujOrganizm();
         this.dodajOrganizm(new Czlowiek(para.x, para.y, this));
     }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="76ff7001-2e4d-4179-bd1d-f8d658b39718" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/antylopa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/barszcz.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/czlowiek.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/guarana.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/jagody.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/lis.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/mlecz.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/owca.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/trawa.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/wilk.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets(main)/zolw.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/antylopa.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/antylopa.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/barszcz.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/barszcz.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/czlowiek.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/czlowiek.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/guarana.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/guarana.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/jagody.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/jagody.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/lis.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/lis.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/mlecz.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/mlecz.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/owca.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/owca.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/trawa.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/trawa.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/wilk.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/wilk.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/zolw.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/zolw.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/projekt2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Swiat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swiat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Symulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Symulator.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2grfsoxvi4Jroh4AgvjV3gmxZ8z" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Symulator.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Michal/Desktop/Object-oriented-Programming---Project-2&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-22-openjdk-22-3183f394aec4-bad0321e" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76ff7001-2e4d-4179-bd1d-f8d658b39718" name="Changes" comment="" />
+      <created>1716460828970</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1716460828970</updated>
+    </task>
+    <servers />
+  </component>
+</project>
