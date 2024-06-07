@@ -68,6 +68,18 @@ public class Antylopa extends Zwierze {
                 swiat.usunOrganizm(this);
             }
         }
+        else if (organizm.getSymbol() == 'A')
+        {
+            if (organizm.getCooldown() == 0 && this.getCooldown() == 0)
+            {
+                Zwierze nowy = FabrykaZwierzat.utworzZwierze(this.getSymbol(), this.getX() + 1, this.getY(), this.swiat);
+                swiat.dodajOrganizm(nowy);
+                String komunikat = "rozmnozenie " + this.nazwaOrganizmu(this.getSymbol()) + " na pozycji (" + this.getX() + ", " + this.getY() + ")";
+                swiat.dodajKomunikat(komunikat);
+                this.setCooldown(10);
+                organizm.setCooldown(10);
+            }
+        }
 	    else
         {
             String komunikat = organizm.nazwaOrganizmu(organizm.getSymbol()) + " zabija " + this.nazwaOrganizmu(this.getSymbol()) + " na pozycji (" + this.getX() + ", " + this.getY() + ")";

@@ -11,9 +11,9 @@ public class BarszczSosnowskiego extends Roslina {
     @Override
     public void kolizja(Organizm organizm) {
         String komunikat = "Barszcz Sosnowskiego zabija " + organizm.nazwaOrganizmu(organizm.getSymbol()) + " na pozycji (" + this.getX() + ", " + this.getY() + ")";;
+        swiat.dodajKomunikat(komunikat);
         swiat.usunOrganizm(organizm);
         swiat.usunOrganizm(this);
-        return;
     }
 
     @Override

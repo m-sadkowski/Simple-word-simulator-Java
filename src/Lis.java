@@ -45,9 +45,9 @@ public class Lis extends Zwierze {
                 String komunikat = "Lis korzysta z dobrego wechu i omija " + organizm.nazwaOrganizmu(organizm.getSymbol()) + " na pozycji (" + this.getX() + ", " + this.getY() + ")";
                 swiat.dodajKomunikat(komunikat);
             }
-        }
-	    else {
+            else {
                 this.kolizja(organizm);
+            }
         }
     }
 };

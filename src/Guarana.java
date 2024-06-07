@@ -20,8 +20,6 @@ public class Guarana extends Roslina {
 
         komunikat = komunikat + ", jego sila wzrasta do " + organizm.getSila();
         swiat.dodajKomunikat(komunikat);
-
-        return;
     }
 
     @Override

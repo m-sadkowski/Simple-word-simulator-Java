@@ -21,7 +21,6 @@ public class Zolw extends Zwierze {
         {
             super.kolizja(organizm);
         }
-        return;
     }
 
     @Override

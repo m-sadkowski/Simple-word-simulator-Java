@@ -14,7 +14,6 @@ public class WilczeJagody extends Roslina {
         swiat.usunOrganizm(organizm);
         swiat.dodajKomunikat(komunikat);
         swiat.usunOrganizm(this);
-        return;
     }
 
     @Override

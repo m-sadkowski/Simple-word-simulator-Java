@@ -176,7 +176,6 @@ public class Symulator extends JFrame implements MouseListener {
                     swiat.wykonajTure(przycisk);
 
                     if(swiat != null) {
-                        int ilosc = swiat.komunikaty.size();
                         outputPanel.removeAll();
 
                         outputPanel.setLayout(new GridLayout(1, 1));

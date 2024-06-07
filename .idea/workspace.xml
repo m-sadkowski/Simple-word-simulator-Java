@@ -5,34 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76ff7001-2e4d-4179-bd1d-f8d658b39718" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/antylopa.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/barszcz.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/czlowiek.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/guarana.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/jagody.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/lis.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/mlecz.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/owca.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/trawa.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/wilk.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets(main)/zolw.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/antylopa.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/antylopa.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/barszcz.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/barszcz.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/czlowiek.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/czlowiek.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/guarana.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/guarana.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/jagody.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/jagody.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/lis.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/lis.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/mlecz.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/mlecz.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/owca.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/owca.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/trawa.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/trawa.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/wilk.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/wilk.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/zolw.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/zolw.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/projekt2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Swiat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Swiat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Antylopa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Antylopa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BarszczSosnowskiego.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/BarszczSosnowskiego.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Guarana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Guarana.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Lis.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Lis.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Symulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Symulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/WilczeJagody.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WilczeJagody.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Zolw.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Zolw.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
